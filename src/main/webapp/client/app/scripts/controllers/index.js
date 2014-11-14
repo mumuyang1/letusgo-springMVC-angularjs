@@ -8,28 +8,28 @@ angular.module('letusgoApp')
         var temp = CartItemsService.get('cartCounts');
         var cartCounts = temp ? temp : counts;
         CartItemsService.set('cartCounts', cartCounts);
-        $scope.cartsums = CartItemsService.get('cartCounts');
+        $scope.cartCounts = CartItemsService.get('cartCounts');
       }else{
-        $scope.cartsums = 0;
+        $scope.cartCounts = 0;
       }
     });
 
     $scope.addCartSum = function (item) {
-      $scope.cartsums = ItemsService.addCart(item);
+      $scope.cartCounts = ItemsService.addCart(item);
     };
 
 
     $scope.$on('to-parent-change', function () {
 
       CartItemsService.getCartItemCounts(function(data){
-        $scope.cartsums = data;
+        $scope.cartCounts = data;
       });
     });
 
     $scope.$on('to-parent-pay', function () {
 
       CartItemsService.pay(function () {
-        $scope.cartsums = CartItemsService.get('cartSum');
+        $scope.cartCounts = CartItemsService.get('cartCounts');
       });
     });
 

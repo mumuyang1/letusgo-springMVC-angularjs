@@ -13,12 +13,12 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
 
   this.addCart = function (item) {
 
-    var cartSum = +CartItemsService.get('cartSum');
-    cartSum += 1;
-    CartItemsService.set('cartSum', cartSum);
+    var cartSums = +CartItemsService.get('cartCounts');
+    cartSums += 1;
+    CartItemsService.set('cartCounts', cartSums);
 
     this.addToCart(item);
-    return cartSum;
+    return cartSums;
   };
 
   this.addToCart = function (item) {
