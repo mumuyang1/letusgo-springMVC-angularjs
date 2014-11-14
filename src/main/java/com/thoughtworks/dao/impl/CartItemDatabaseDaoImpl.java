@@ -30,6 +30,19 @@ public class CartItemDatabaseDaoImpl implements CartItemDatabaseDao {
     }
 
     @Override
+    public CartItemDatabase getCartItem(int id) {
+        return jdbcTemplate.queryForObject("select * from cart_items where id = ?;", new Object[]{id}, new RowMapper<CartItemDatabase>() {
+            @Override
+            public CartItemDatabase mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return new CartItemDatabase(
+                        rs.getInt("id"),
+                        rs.getInt("i_id"),
+                        rs.getDouble("count"));
+            }
+        });
+    }
+
+    @Override
     public void addCartItem(CartItem cartItem) {
         jdbcTemplate.update("insert into cart_items values (?,?,?);",cartItem.getId(),cartItem.getItem().getId(),cartItem.getCount());
     }
