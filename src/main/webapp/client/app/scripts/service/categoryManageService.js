@@ -23,13 +23,15 @@ angular.module('letusgoApp')
     };
 
 
-    this.addCategory = function (newCategoryName,callback) {
+    this.addCategory = function (newCategoryName, callback) {
 
       this.getCategories(function (categories) {
 
         if (!(_.any(categories, { name: newCategoryName }))) {
           $http.post('/api/categories', {id: null, name: newCategoryName})
-          .success(function(){callback()})
+            .success(function () {
+              callback();
+            })
         }
       });
 
@@ -44,8 +46,11 @@ angular.module('letusgoApp')
     };
 
 
-    this.deleteCategoryButton = function (id) {
-      $http.delete('/api/categories/' + id);
+    this.deleteCategoryButton = function (id,callback) {
+      $http.delete('/api/categories/' + id)
+        .success(function(){
+          callback();
+        });
     };
 
 

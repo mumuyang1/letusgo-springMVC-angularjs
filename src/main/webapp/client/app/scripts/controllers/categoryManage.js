@@ -53,8 +53,9 @@ angular.module('letusgoApp')
 
         }else{
 
-          categoryManageService.deleteCategoryButton(category.id);
-          refresh();
+          categoryManageService.deleteCategoryButton(category.id,function(){
+            refresh();
+          });
         }
       });
     };
