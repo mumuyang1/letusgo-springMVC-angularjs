@@ -65,15 +65,9 @@ angular.module('letusgoApp')
 
 
     this.pay = function (callback) {
-      $http.post('/api/payment')
-        .success(function (data, status) {
-
-          if (status === 200) {
-            var cartSums = 0;
-            localStorageService.set('cartSum', cartSums);
-            callback();
-          }
-        });
+      this.deleteCartItems();
+      localStorageService.set('cartSum', 0);
+      callback() ;
     };
 
 
