@@ -17,8 +17,17 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
     cartSum += 1;
     CartItemsService.set('cartSum', cartSum);
 
-    $http.post('/api/cartItems', {'item': item});
+    this.addToCart(item);
     return cartSum;
+  };
+
+  this.addToCart = function (item) {
+    CartItemsService.getCartItems(function (cartItems) {
+//      if (_.any(cartItems, {item : item})) {
+//
+//      }
+      CartItemsService.addCartItem(item);
+    });
   };
 
   this.addProductButton = function (item) {

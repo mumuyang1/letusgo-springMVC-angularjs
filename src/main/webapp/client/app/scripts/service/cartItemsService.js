@@ -22,12 +22,16 @@ angular.module('letusgoApp')
       });
     };
 
+    this.addCartItem = function (item) {
+      $http.post('/api/cartitems',{id:null,item:item,count:1});
+    };
+
     this.deleteCartItem = function (id) {
       $http.delete('/api/cartitems/' + id);
     };
 
     this.changeCount = function (cartItem) {
-      $http.put('/api/cartitems/'+cartItem.id,{id:cartItem.id,item:cartItem.item,count:cartItem.count});
+      $http.put('/api/cartitems/' + cartItem.id, {id: cartItem.id, item: cartItem.item, count: cartItem.count});
     };
 
 
