@@ -29,7 +29,6 @@ angular.module('letusgoApp')
       _.forEach(cartItems, function (cartItem) {
 
         if (cartItem.id === id) {
-          console.log(cartItem.id + '------');
 
           cartSums = cartSums - cartItem.count;
           localStorageService.set('cartSum', cartSums);
@@ -43,9 +42,9 @@ angular.module('letusgoApp')
       $http.delete('/api/cartitems/' + id);
     };
 
-//    this.updateCartItemCount = function(cartItem) {
-//      $http.put
-//    };
+    this.changeCount = function (cartItem) {
+      $http.put('/api/cartitems/'+cartItem.id,{id:cartItem.id,item:cartItem.item,count:cartItem.count});
+    };
 
 
     this.updateCartSumsWhenChange = function (cartItems, item) {
@@ -62,10 +61,12 @@ angular.module('letusgoApp')
       return localStorageService.get('cartSum');
     };
 
+
     this.getSubtotal = function (cartItem) {
       var subtotal = cartItem.item.price * cartItem.count;
       return subtotal.toFixed(2);
     };
+
 
     this.getTotal = function (cartItems) {
       var total = 0;

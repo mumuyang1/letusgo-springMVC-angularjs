@@ -27,7 +27,6 @@ angular.module('letusgoApp')
     }
 
 
-
     $scope.deleteButton = function (id) {
 
       $scope.$emit('to-parent-delete', id);
@@ -37,6 +36,7 @@ angular.module('letusgoApp')
 
     $scope.changeInputCount = function (item) {
       $scope.$emit('to-parent-change', item);
+      CartItemsService.changeCount(item);
       updateTotalAndCart();
     }
 
