@@ -30,9 +30,14 @@ angular.module('letusgoApp')
       $http.delete('/api/cartitems/' + id);
     };
 
-    this.deleteCartItems = function () {
+    this.deleteCartItems = function (callback) {
 
-      $http.delete('/api/cartitems/');
+      localStorageService.set('cartCounts', 0);
+
+      $http.delete('/api/cartitems/')
+        .success(function () {
+          callback();
+        });
     };
 
     this.changeCount = function (cartItem) {
@@ -52,13 +57,6 @@ angular.module('letusgoApp')
         total += cartItem.item.price * cartItem.count;
       });
       return total.toFixed(2);
-    };
-
-
-    this.pay = function (callback) {
-      this.deleteCartItems();
-      localStorageService.set('cartCounts', 0);
-      callback();
     };
 
 

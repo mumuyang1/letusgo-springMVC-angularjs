@@ -14,7 +14,9 @@ angular.module('letusgoApp')
     updateCartData();
 
     $scope.payButton = function () {
-      $scope.$emit('to-parent-pay');
-      updateCartData();
+      CartItemsService.deleteCartItems(function () {
+        updateCartData();
+        $scope.$emit('to-parent-pay');
+      });
     };
   });
