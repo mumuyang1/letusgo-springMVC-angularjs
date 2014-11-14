@@ -29,14 +29,14 @@ angular.module('letusgoApp')
 
     $scope.deleteButton = function (id) {
 
-      $scope.$emit('to-parent-delete', id);
       CartItemsService.deleteCartItem(id);
+      $scope.$emit('to-parent-change');
       updateTotalAndCart();
     };
 
     $scope.changeInputCount = function (item) {
-      $scope.$emit('to-parent-change', item);
       CartItemsService.changeCount(item);
+      $scope.$emit('to-parent-change');
       updateTotalAndCart();
     }
 

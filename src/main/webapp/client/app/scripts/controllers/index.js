@@ -15,32 +15,17 @@ angular.module('letusgoApp')
     };
 
 
-    $scope.$on('to-parent-add', function (add, item) {
+    $scope.$on('to-parent-change', function () {
 
-      $scope.cartsums = CartItemsService.add(item);
-    });
-
-
-    $scope.$on('to-parent-reduce', function (reduce, cartItem) {
-
-      CartItemsService.getCartItems(function (data) {
-
-        $scope.cartsums = CartItemsService.updateCartSumsWhenReduce(data, cartItem)
+      CartItemsService.getCartItemCounts(function(data){
+        $scope.cartsums = data;
       });
     });
 
+    $scope.$on('to-parent-pay', function () {
 
-    $scope.$on('to-parent-delete', function (event, id) {
-
-      CartItemsService.getCartItems(function (data) {
-        $scope.cartsums = CartItemsService.updateCartSumsWhenDelete(data, id);
-      });
-    });
-
-    $scope.$on('to-parent-change', function (event, cartItem) {
-
-      CartItemsService.getCartItems(function (data) {
-        $scope.cartsums = CartItemsService.updateCartSumsWhenChange(data, cartItem);
+      CartItemsService.pay(function () {
+        $scope.cartsums = CartItemsService.get('cartSum');
       });
     });
 
@@ -50,15 +35,6 @@ angular.module('letusgoApp')
       $scope.cartActive = cart;
       $scope.productManageActive = productManage;
     }
-
-
-    $scope.$on('to-parent-pay', function () {
-
-      CartItemsService.pay(function () {
-        $scope.cartsums = CartItemsService.get('cartSum');
-      });
-    });
-
 
     $scope.$on('to-parent-mainActive', function () {
       highlight(true, false, false, false);
