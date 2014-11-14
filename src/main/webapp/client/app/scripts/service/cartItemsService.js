@@ -12,7 +12,7 @@ angular.module('letusgoApp')
         });
     };
 
-    this.getCartItem = function (int id) {
+    this.getCartItem = function (id,callback) {
       $http.get('/api/cartitems'+id)
         .success(function (data) {
 
