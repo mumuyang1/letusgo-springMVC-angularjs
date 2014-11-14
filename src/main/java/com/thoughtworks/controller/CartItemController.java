@@ -45,4 +45,10 @@ public class CartItemController {
         cartItemServiceImpl.deleteCartItem(id);
     }
 
+    @RequestMapping(value = "cartitems",method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCartItems(){
+        cartItemServiceImpl.deleteCartItems();
+    }
+
 }
