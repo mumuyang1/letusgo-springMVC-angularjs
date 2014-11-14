@@ -5,7 +5,7 @@ angular.module('letusgoApp')
 
     CartItemsService.getCartItemCounts(function (counts) {
       var temp = CartItemsService.get('cartCounts');
-      var cartCounts = temp ? counts : temp;
+      var cartCounts = temp ? temp : counts;
       CartItemsService.set('cartCounts', cartCounts);
       $scope.cartsums = CartItemsService.get('cartCounts');
     });
