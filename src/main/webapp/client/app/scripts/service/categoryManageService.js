@@ -23,12 +23,13 @@ angular.module('letusgoApp')
     };
 
 
-    this.addCategory = function (newCategoryName) {
+    this.addCategory = function (newCategoryName,callback) {
 
       this.getCategories(function (categories) {
 
-        if(!(_.any(categories, { name: newCategoryName }))){
-          $http.post('/api/categories', {id: null, name: newCategoryName});
+        if (!(_.any(categories, { name: newCategoryName }))) {
+          $http.post('/api/categories', {id: null, name: newCategoryName})
+          .success(function(){callback()})
         }
       });
 
