@@ -22,39 +22,7 @@ angular.module('letusgoApp')
       });
     };
 
-//    this.add = function (item) {
-//
-//      var cartSums = +localStorageService.get('cartSum');
-//      cartSums += 1;
-//      localStorageService.set('cartSum', cartSums);
-//
-//      $http.put('/api/cartItems/' + item.id, {'operation': 'add'});
-//      return cartSums;
-//    };
-//
-//    this.updateCartSumsWhenReduce = function (cartItems, item) {
-//
-//      var cartSums = localStorageService.get('cartSum');
-//
-//      _.forEach(cartItems, function (cartItem) {
-//
-//        if (cartItem.item.name === item.name) {
-//
-//          if (cartItem.count > 1) {
-//
-//            cartSums -= 1;
-//            localStorageService.set('cartSum', cartSums);
-//          }
-//        }
-//      });
-//      return localStorageService.get('cartSum');
-//    };
-//
-//    this.reduceCartItem = function (item) {
-//
-//      $http.put('/api/cartItems/' + item.id, {'operation': 'reduce'});
-//    };
-//
+
     this.updateCartSumsWhenDelete = function (cartItems, id) {
       var cartSums = localStorageService.get('cartSum');
 

@@ -12,7 +12,7 @@ angular.module('letusgoApp')
 
         _.forEach(data, function (cartItem) {
 
-          categoryManageService.getCategoryById(cartItem.item.categoryId, function (category) {
+          categoryManageService.getCategory(cartItem.item.categoryId, function (category) {
             cartItem.item.category = category;
             $scope.cartItems = data;
 
@@ -27,20 +27,7 @@ angular.module('letusgoApp')
     }
 
 
-//    $scope.addButton = function (item) {
-//
-//      $scope.$emit('to-parent-add', item);
-//      updateTotalAndCart();
-//    };
-//
-//
-//    $scope.reduceButton = function (item) {
-//
-//      $scope.$emit('to-parent-reduce', item);
-//      CartItemsService.reduceCartItem(item);
-//      updateTotalAndCart();
-//    };
-//
+
     $scope.deleteButton = function (id) {
 
       $scope.$emit('to-parent-delete', id);
