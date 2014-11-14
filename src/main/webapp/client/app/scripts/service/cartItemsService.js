@@ -72,7 +72,7 @@ angular.module('letusgoApp')
     };
 
     this.deleteCartItem = function (id) {
-      $http.delete('/api/cartItems/' + id);
+      $http.delete('/api/cartitems/' + id);
     };
 
 //    this.updateCartItemCount = function(cartItem) {
