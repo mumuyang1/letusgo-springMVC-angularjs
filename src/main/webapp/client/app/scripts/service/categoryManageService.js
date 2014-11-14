@@ -46,15 +46,18 @@ angular.module('letusgoApp')
     };
 
 
-    this.deleteCategoryButton = function (id,callback) {
+    this.deleteCategoryButton = function (id, callback) {
       $http.delete('/api/categories/' + id)
-        .success(function(){
+        .success(function () {
           callback();
         });
     };
 
 
-    this.changeName = function (id, newName) {
-      $http.put('/api/categories/' + id, {id: null, name: newName});
+    this.changeName = function (id, newName, callback) {
+      $http.put('/api/categories/' + id, {id: null, name: newName})
+        .success(function () {
+          callback();
+        });
     };
   });
