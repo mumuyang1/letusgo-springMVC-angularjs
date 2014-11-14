@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartItemServiceImpl implements CartItemService{
+
+public class CartItemServiceImpl implements CartItemService {
 
     @Autowired
     private CartItemDatabaseDao cartItemDatabaseDaoImpl;
@@ -26,15 +27,25 @@ public class CartItemServiceImpl implements CartItemService{
         List<CartItem> cartItems = new ArrayList<CartItem>();
         List<CartItemDatabase> cartItemsDatabase = cartItemDatabaseDaoImpl.getCartItems();
 
-        for(CartItemDatabase cartItemDatabase : cartItemsDatabase) {
-            cartItems.add(new CartItem(cartItemDatabase.getId(),itemServiceImpl.getItem(cartItemDatabase.getItemId()),cartItemDatabase.getCount()));
+        for (CartItemDatabase cartItemDatabase : cartItemsDatabase) {
+            cartItems.add(new CartItem(cartItemDatabase.getId(), itemServiceImpl.getItem(cartItemDatabase.getItemId()), cartItemDatabase.getCount()));
         }
         return cartItems;
     }
 
     @Override
+    public CartItem getCartItem(int id) {
+        CartItemDatabase cartItemDatabase = cartItemDatabaseDaoImpl.getCartItem(id);
+        CartItem cartItem = new CartItem(cartItemDatabase.getId(),
+                itemServiceImpl.getItem(cartItemDatabase.getItemId()),
+                cartItemDatabase.getCount()
+        );
+        return cartItem;
+    }
+
+    @Override
     public void addCartItem(CartItem cartItem) {
-         cartItemDatabaseDaoImpl.addCartItem(cartItem);
+        cartItemDatabaseDaoImpl.addCartItem(cartItem);
     }
 
     @Override

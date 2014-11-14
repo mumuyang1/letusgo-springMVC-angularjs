@@ -21,6 +21,12 @@ public class CartItemController {
         return cartItemServiceImpl.getCartItems();
     }
 
+    @RequestMapping(value = "cartitems/{id}", method = RequestMethod.GET)
+    public CartItem getCartItem(@PathVariable int id) {
+
+        return cartItemServiceImpl.getCartItem(id);
+    }
+
     @RequestMapping(value = "cartitems", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void addCartItem(@RequestBody CartItem cartItem) {
