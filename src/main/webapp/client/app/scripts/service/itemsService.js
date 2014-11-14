@@ -23,12 +23,19 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
 
   this.addToCart = function (item) {
     CartItemsService.getCartItems(function (cartItems) {
-      if (_.any(cartItems, {item : item})) {
+      var data =  _.find(cartItems, function (cartItem) {
+        return cartItem.item.id === item.id;
+      });
 
-        CartItemsService.changeCount();
+
+      if (data !== undefined) {
+          data.count =  data.count + 1;
+        CartItemsService.changeCount(data);
+      }else{
+        CartItemsService.addCartItem(item);
       }
-      CartItemsService.addCartItem(item);
     });
+
   };
 
   this.addProductButton = function (item) {
