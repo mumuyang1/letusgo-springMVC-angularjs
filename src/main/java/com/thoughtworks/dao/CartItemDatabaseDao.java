@@ -9,8 +9,6 @@ public interface CartItemDatabaseDao {
 
     public List<CartItemDatabase> getCartItems();
 
-    public CartItemDatabase getCartItem(int id);
-
     public void addCartItem(CartItem cartItem);
 
     public void modifyCartItem(CartItem cartItem);
