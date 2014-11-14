@@ -11,9 +11,13 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
 
   this.getItems = function (callback) {
 
-    getAllItems(function (data) {
-      callback(data);
-    });
+//    getAllItems(function (data) {
+//      callback(data);
+//    });
+    $http.get('http://localhost:8080/api/items')
+      .success(function (data) {
+        callback(data);
+      });
   };
 
 
@@ -27,19 +31,24 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
     return cartSum;
   };
 
-  this.addProductButton = function (name, price, unit, categoryId, callback) {
+  this.addProductButton = function (item) {
 
-    getAllItems(function () {
-      $http.post('/api/items', {
-        item: {  name: name,
-          price: price,
-          unit: unit,
-          categoryId: categoryId}
-      });
-      callback();
+    this.hasExist(item.name, function (data) {
+      if (!data) {
+        $http.post('/api/items', {id: null,
+          name: item.name,
+          unit: item.unit,
+          price: item.price,
+          categoryId: item.category.id});
+      }
     });
   };
 
+  this.hasExist = function (name, callback) {
+    this.getItems(function (categories) {
+      callback(_.any(categories, { name: name }));
+    });
+  };
 
   this.deleteProductButton = function (id) {
     $http.delete('/api/items/' + id);

@@ -7,7 +7,7 @@ angular.module('letusgoApp')
 
           _.forEach(data,function(item){
 
-            categoryManageService.getCategoryById(item.categoryId ,function(category){
+            categoryManageService.getCategory(item.categoryId ,function(category){
               item.category = category;
               $scope.allProducts = data;
             });
@@ -35,18 +35,12 @@ angular.module('letusgoApp')
         });
       };
 
-
-      $scope.finishAddProduct = function(name,price,unit,categoryName){
-        showCharge(true,false,false);
-
-        categoryManageService. getCategoryByName(categoryName,function(data){
-
-          var categoryId = data.id;
-          ItemsService.addProductButton(name,price,unit,categoryId, function(){
-            refresh();
-          });
-        });
-      };
+    $scope.finishAddProduct = function(item){
+      showCharge(true,false,false);
+        ItemsService.addProductButton(item, function(){
+          refresh();
+      });
+    };
 
       $scope.cancelAddProduct = function(){
         $scope.clickAddProduct = false;

@@ -11,7 +11,7 @@ angular.module('letusgoApp')
     };
 
 
-    this.getCategoryById = function (id, callback) {
+    this.getCategory = function (id, callback) {
 
       this.getCategories(function (categories) {
 
@@ -23,24 +23,10 @@ angular.module('letusgoApp')
     };
 
 
-    this.getCategoryByName = function (name, callback) {
-
-      this.getCategories(function (categories) {
-
-        var data = _.find(categories, function (category) {
-
-          return category.name === name;
-        });
-
-        callback(data);
-      });
-    };
-
-
     this.addCategory = function (newCategoryName) {
 
       this.getCategories(function (categories) {
-         
+
         if(!(_.any(categories, { name: newCategoryName }))){
           $http.post('/api/categories', {id: null, name: newCategoryName});
         }
