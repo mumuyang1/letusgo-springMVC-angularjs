@@ -2,18 +2,8 @@
 
 angular.module('letusgoApp').service('ItemsService', function (CartItemsService, $http) {
 
-  function getAllItems(callback) {
-    $http.get('http://localhost:8080/api/items')
-      .success(function (data) {
-        callback(data);
-      });
-  }
-
   this.getItems = function (callback) {
 
-//    getAllItems(function (data) {
-//      callback(data);
-//    });
     $http.get('http://localhost:8080/api/items')
       .success(function (data) {
         callback(data);
@@ -55,14 +45,16 @@ angular.module('letusgoApp').service('ItemsService', function (CartItemsService,
   };
 
 
-  this.changeProduct = function (id, newName, newPrice, newUnit, newCategoryId) {
+  this.changeProduct = function (id, newItem) {
 
-    $http.put('/api/items/' + id, {
-      item: { name: newName,
-        price: newPrice,
-        unit: newUnit,
-        categoryId: newCategoryId}
-    });
+    $http.put('/api/items/' + id,
+      {
+        id: id,
+        name: newItem.name,
+        unit: newItem.unit,
+        price: newItem.price,
+        categoryId: newItem.category.id
+      });
   };
 
 });
