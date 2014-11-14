@@ -4,10 +4,14 @@ angular.module('letusgoApp')
   .controller('CartSumsCtrl', function ($scope, ItemsService, CartItemsService) {
 
     CartItemsService.getCartItemCounts(function (counts) {
-      var temp = CartItemsService.get('cartCounts');
-      var cartCounts = temp ? temp : counts;
-      CartItemsService.set('cartCounts', cartCounts);
-      $scope.cartsums = CartItemsService.get('cartCounts');
+      if(counts){
+        var temp = CartItemsService.get('cartCounts');
+        var cartCounts = temp ? temp : counts;
+        CartItemsService.set('cartCounts', cartCounts);
+        $scope.cartsums = CartItemsService.get('cartCounts');
+      }else{
+        $scope.cartsums = 0;
+      }
     });
 
     $scope.addCartSum = function (item) {
