@@ -1,0 +1,46 @@
+<div class="panel">
+  <div class="panel-body"></div>
+</div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="panel">
+      <div class="panel-body">
+        <h2 class="text-danger">淘到的宝贝</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <div class="row text-center">
+          <div class="col-md-2">分类</div>
+          <div class="col-md-2">商品</div>
+          <div class="col-md-2">单价</div>
+          <div class="col-md-3">数量(可加减)</div>
+          <div class="col-md-2">移出购物车</div>
+          <div class="col-md-1">小计</div>
+        </div>
+      </div>
+      <div class="panel-body" ng-repeat="cartItem in cartItems">
+        <div class="row text-center">
+          <div class="col-md-2 form-group">{{cartItem.item.category.name}}</div>
+          <div class="col-md-2 form-group">{{cartItem.item.name}}</div>
+          <div class="col-md-2 form-group">{{cartItem.item.price}}/{{cartItem.item.unit}}</div>
+          <div class="col-md-3 form-group form-inline">
+            <input class="text-center" type="number" step="1" min="1" ng-model="cartItem.count"
+                   ng-change="changeInputCount(cartItem)"/>
+          </div>
+          <div class="col-md-2 form-group">
+            <button class="alert-danger" ng-click="deleteButton(cartItem.id)">移除</button>
+          </div>
+          <div class="col-md-1">
+            {{getSubtotal(cartItem)}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h4 class="text-right text-success">总计：{{total}}元</h4>
+<p class="text-right"><a class="btn btn-success btn-lg" role="button" ng-href="#/pay">去结算</a></p>

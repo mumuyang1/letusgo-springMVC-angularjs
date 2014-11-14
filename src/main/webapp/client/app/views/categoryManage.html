@@ -1,0 +1,62 @@
+<div class="panel">
+   <div class="panel-body">
+     <div class="panel-body text-center" ng-show="clickDelete">
+       <label class="text-danger">该类别下有商品，不能删除！！</label>
+       <button ng-click="cancelDelete()" type="button" class="btn btn-sm btn-info">取消删除</button>
+     </div>
+   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 text-center text-danger">
+    <h2>商品分类管理</h2>
+  </div>
+  <div class="col-md-3">
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+      <input type="text" class="form-control" ng-model="searchText" placeholder="搜索分类">
+    </div>
+  </div>
+  <div class="col-md-2 text-center">
+    <button ng-click="addCategory()" type="button" class="btn btn-success btn-sm add">
+      增添新分类<span class="glyphicon glyphicon glyphicon-hand-up"></span>
+    </button>
+  </div>
+  <div class="col-md-4 text-center form-inline" ng-show="clickAddCategory">
+    <input class="form-control form-group" placeholder="请输入想添加的的分类名称" ng-model="newCategory.name">
+    <input type="submit" class="btn btn-success btn-sm" value="添加" ng-click="finishAddCategory(newCategory.name)">
+    <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelAddCategory()">
+  </div>
+  <div class="col-md-4 text-center form-inline" ng-show="clickChangeCategory">
+    <input class="form-control" placeholder="请输入" ng-model="newName">
+    <input type="submit" class="btn btn-primary btn-sm" value="修改" ng-click="finishChangeCategory(newName)">
+    <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelChangeCategory()">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-7">
+    <div class="panel panel-default">
+       <div class="panel-heading">
+         <div class="row text-center">
+           <div class="col-md-4">分类名称</div>
+           <div class="col-md-4">修改分类</div>
+           <div class="col-md-4">删除分类</div>
+         </div>
+       </div>
+       <div class="panel-body" ng-repeat="category in categories | filter:searchText">
+         <div class="row text-center">
+           <div class="col-md-4 form-group">{{category.name}}</div>
+           <div class="col-md-4 form-group">
+               <button ng-click="changeCategory(category)" type="button" class="btn btn-primary btn-sm add">修改该分类</button>
+           </div>
+           <div class="col-md-4 form-group">
+             <button ng-click="deleteCategory(category)" type="button" class="btn btn-danger btn-sm add">删除该分类</button>
+           </div>
+         </div>
+       </div>
+    </div>
+  </div>
+</div>

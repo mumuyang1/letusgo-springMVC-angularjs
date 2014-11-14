@@ -1,0 +1,46 @@
+<div class="panel">
+  <div class="panel-body"></div>
+</div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="panel">
+      <div class="panel-heading"></div>
+      <div class="panel-body">
+        <div class="panel panel-danger">
+          <div class="panel-heading text-center"><h3>Let'sGo商城购物清单！</h3></div>
+          <div class="panel-body">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <div class="row">
+                  <div class="col-md-3"><h4>商品</h4></div>
+                  <div class="col-md-3"><h4>单价</h4></div>
+                  <div class="col-md-3"><h4>数量</h4></div>
+                  <div class="col-md-3"><h4>小计</h4></div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="row" ng-repeat="cartItem in cartItems">
+                  <div class="col-md-3 text-center">{{cartItem.item.name}}</div>
+                  <div class="col-md-3 text-center">{{cartItem.item.price}}元/{{cartItem.item.unit}}</div>
+                  <div class="col-md-3 text-center">{{cartItem.count}}{{cartItem.items.unit}}</div>
+                  <div class="col-md-3 text-center">{{cartItem.item.price * cartItem.count}}元</div>
+                </div>
+                <div class="text-center text-info"><h4>总计：{{total}}元</h4></div>
+                <div class="text-center text-success"><h4>欢迎您下次再来选购！</h4></div>
+                <p class="text-center">
+                  <button class="btn btn-info" id="pay" ng-click="payButton()">立即结算<span
+                    class="glyphicon glyphicon glyphicon-hand-up"></span></button>
+                </p>
+                <p class="text-right">
+                  <a class="btn btn-primary btn-sm" ng-href="#/shoppingMall/1">再去商城瞧瞧<span
+                    class="glyphicon glyphicon glyphicon-hand-up"></span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

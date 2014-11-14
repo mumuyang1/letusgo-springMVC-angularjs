@@ -1,0 +1,36 @@
+<div class="panel">
+  <div class="panel-body"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <div class="panel panel-info">
+      <div class="panel-heading text-center">
+        <div class="row">
+          <div class="col-md-3"><h4>分类</h4></div>
+          <div class="col-md-2"><h4>商品</h4></div>
+          <div class="col-md-2"><h4>单价</h4></div>
+          <div class="col-md-2"><h4>单位</h4></div>
+          <div class="col-md-3"><h4>淘到手</h4></div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="item in items" class="row text-center">
+          <div class="col-md-3 form-group text-danger">{{item.category.name}}</div>
+          <div class="col-md-2 form-group text-warning">{{item.name}}</div>
+          <div class="col-md-2 form-group text-info">{{item.price}}</div>
+          <div class="col-md-2 form-group text-success">{{item.unit}}</div>
+          <div class="col-md-3 form-group">
+            <button ng-click="addCartSum(item)" type="button" class="btn btn-primary btn-sm add">添加到购物车</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-right">
+      <a class="btn btn-warning btn-sm" ng-href="#/cart">查看我的购物车<span
+        class="glyphicon glyphicon glyphicon-hand-up"></span></a>
+    </p>
+  </div>
+  <div class="col-md-10"></div>
+</div>
