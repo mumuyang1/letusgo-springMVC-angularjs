@@ -40,15 +40,13 @@ angular.module('letusgoApp')
     this.addCategory = function (newCategoryName) {
 
       this.getCategories(function (categories) {
-
-        $http.post('/api/categories', {id: null, name: newCategoryName});
-//        $http.post('/api/categories', { name: newCategoryName });
-        callback();
+         
+        if(!(_.any(categories, { name: newCategoryName }))){
+          $http.post('/api/categories', {id: null, name: newCategoryName});
+        }
       });
 
-
     };
-
 
     this.hasProductsInTheCategory = function (categoryId, callback) {
 
@@ -65,7 +63,6 @@ angular.module('letusgoApp')
 
 
     this.changeName = function (id, newName) {
-      console.log();
-      $http.put('/api/categories/' + id, {id:null,name: newName});
+      $http.put('/api/categories/' + id, {id: null, name: newName});
     };
   });
