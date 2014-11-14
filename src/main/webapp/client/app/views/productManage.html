@@ -1,6 +1,6 @@
 <div class="panel">
-   <div class="panel-heading">
-   </div>
+  <div class="panel-heading">
+  </div>
 </div>
 
 <div class="row">
@@ -22,53 +22,58 @@
 
 <div class="row">
   <div class="col-md-4" ng-show="controlLayout"></div>
-    <div class="col-md-4 text-left form-inline" ng-show="clickAddProduct">
-      分类：<select class="form-control" ng-model="newProductCategory">
-                <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-           </select><br>
-      名称：<input class="form-control" placeholder="请输入名称" ng-model="newProductName"><br>
-      单价：<input class="form-control" placeholder="请输入单价" ng-model="newProductPrice"><br>
-      单位：<input class="form-control" placeholder="请输入单位" ng-model="newProductUnit">
-      <input type="submit" class="btn btn-success btn-sm" value="添加"
-          ng-click="finishAddProduct(newProductName,newProductPrice,newProductUnit,newProductCategory)">
-      <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelAddProduct()">
-    </div>
-    <div class="col-md-4 text-left form-inline" ng-show="clickChangeProduct">
-      分类：<select class="form-control" ng-model="itemToChange.category.name" ng-options="category.name as category.name for category in categories">
-           </select><br>
-      名称：<input class="form-control" ng-model="itemToChange.name"><br>
-      单价：<input class="form-control" ng-model="itemToChange.price"><br>
-      单位：<input class="form-control" ng-model="itemToChange.unit">
-      <input type="submit" class="btn btn-primary btn-sm" value="修改"
-         ng-click="finishChangeProduct(itemToChange.name,itemToChange.price,itemToChange.unit,itemToChange.category.name)">
-      <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelChangeProduct()">
-    </div>
+  <div class="col-md-4 text-left form-inline" ng-show="clickAddProduct">
+    <!--分类：<select class="form-control" ng-model="newProduct.id">-->
+    <!--<option ng-repeat="category in categories">{{category.name}}</option>-->
+    <!--</select><br>-->
+    分类 :<select ng-model="newProduct.category" ng-options="category.name for category in categories"
+                class="form-control">
+    <option value="">{{newProduct.category.name}}</option>
+  </select><br>
+    名称：<input class="form-control" placeholder="请输入名称" ng-model="newProduct.name"><br>
+    单价：<input class="form-control" placeholder="请输入单价" ng-model="newProduct.price"><br>
+    单位：<input class="form-control" placeholder="请输入单位" ng-model="newProduct.unit">
+    <input type="submit" class="btn btn-success btn-sm" value="添加"
+           ng-click="finishAddProduct(newProduct)">
+    <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelAddProduct()">
+  </div>
+  <div class="col-md-4 text-left form-inline" ng-show="clickChangeProduct">
+    分类：<select class="form-control" ng-model="itemToChange.category.name"
+               ng-options="category.name as category.name for category in categories">
+  </select><br>
+    名称：<input class="form-control" ng-model="itemToChange.name"><br>
+    单价：<input class="form-control" ng-model="itemToChange.price"><br>
+    单位：<input class="form-control" ng-model="itemToChange.unit">
+    <input type="submit" class="btn btn-primary btn-sm" value="修改"
+           ng-click="finishChangeProduct(itemToChange.name,itemToChange.price,itemToChange.unit,itemToChange.category.name)">
+    <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelChangeProduct()">
+  </div>
   <div class="col-md-8">
     <div class="panel panel-default">
-       <div class="panel-heading">
-         <div class="row text-center">
-           <div class="col-md-2">商品类别</div>
-           <div class="col-md-2">商品名称</div>
-           <div class="col-md-2">商品单价（元）</div>
-           <div class="col-md-2">商品单位</div>
-           <div class="col-md-2">修改商品信息</div>
-           <div class="col-md-2">删除商品</div>
-         </div>
-       </div>
-       <div class="panel-body" ng-repeat="item in allProducts | filter:searchText">
-         <div class="row text-center">
-           <div class="col-md-2 form-group">{{item.category.name}}</div>
-           <div class="col-md-2 form-group">{{item.name}}</div>
-           <div class="col-md-2 form-group">{{item.price}}</div>
-           <div class="col-md-2 form-group">{{item.unit}}</div>
-           <div class="col-md-2 form-group">
-               <button ng-click="changeProduct(item)" type="button" class="btn btn-primary btn-sm add">修改该商品</button>
-           </div>
-           <div class="col-md-2 form-group">
-             <button ng-click="deleteProduct(item.id)" type="button" class="btn btn-danger btn-sm add">删除该商品</button>
-           </div>
-         </div>
-       </div>
+      <div class="panel-heading">
+        <div class="row text-center">
+          <div class="col-md-2">商品类别</div>
+          <div class="col-md-2">商品名称</div>
+          <div class="col-md-2">商品单价（元）</div>
+          <div class="col-md-2">商品单位</div>
+          <div class="col-md-2">修改商品信息</div>
+          <div class="col-md-2">删除商品</div>
+        </div>
+      </div>
+      <div class="panel-body" ng-repeat="item in allProducts | filter:searchText">
+        <div class="row text-center">
+          <div class="col-md-2 form-group">{{item.category.name}}</div>
+          <div class="col-md-2 form-group">{{item.name}}</div>
+          <div class="col-md-2 form-group">{{item.price}}</div>
+          <div class="col-md-2 form-group">{{item.unit}}</div>
+          <div class="col-md-2 form-group">
+            <button ng-click="changeProduct(item)" type="button" class="btn btn-primary btn-sm add">修改该商品</button>
+          </div>
+          <div class="col-md-2 form-group">
+            <button ng-click="deleteProduct(item.id)" type="button" class="btn btn-danger btn-sm add">删除该商品</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
