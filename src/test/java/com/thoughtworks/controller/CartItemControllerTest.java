@@ -26,7 +26,7 @@ public class CartItemControllerTest {
     private Item item1 = new Item(1, "测试1", "斤", 11, 2);
     private Item item2 = new Item(2, "测试2", "斤", 11, 3);
 
-    private CartItem cartItem = new CartItem(1,item1,1);
+    private CartItem cartItem = new CartItem(1, item1, 1);
 
     @Before
     public void before() {
@@ -45,20 +45,26 @@ public class CartItemControllerTest {
     }
 
     @Test
-    public void should_create_cartItem(){
+    public void should_create_cartItem() {
         cartItemController.addCartItem(cartItem);
         verify(cartItemServiceImpl).addCartItem(cartItem);
     }
 
     @Test
-    public void should_modify_cartItem(){
+    public void should_modify_cartItem() {
         cartItemController.modifyCartItem(cartItem);
         verify(cartItemServiceImpl).modifyCartItem(cartItem);
     }
 
     @Test
-    public void should_delete_cartItem_by_id(){
+    public void should_delete_cartItem_by_id() {
         cartItemController.deleteCartItem(1);
         verify(cartItemServiceImpl).deleteCartItem(1);
+    }
+
+    @Test
+    public void should_delete_all_cart_items() {
+        cartItemController.deleteCartItems();
+        verify(cartItemServiceImpl).deleteCartItems();
     }
 }
