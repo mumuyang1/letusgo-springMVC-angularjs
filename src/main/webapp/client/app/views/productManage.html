@@ -26,13 +26,13 @@
     <!--分类：<select class="form-control" ng-model="newProduct.id">-->
     <!--<option ng-repeat="category in categories">{{category.name}}</option>-->
     <!--</select><br>-->
-    分类 :<select ng-model="newProduct.category" ng-options="category.name for category in categories"
+    分类:<select ng-model="newProduct.category" ng-options="category.name for category in categories"
                 class="form-control">
     <option value="">{{newProduct.category.name}}</option>
   </select><br>
-    名称：<input class="form-control" placeholder="请输入名称" ng-model="newProduct.name"><br>
-    单价：<input class="form-control" placeholder="请输入单价" ng-model="newProduct.price"><br>
-    单位：<input class="form-control" placeholder="请输入单位" ng-model="newProduct.unit">
+    名称:<input class="form-control" placeholder="请输入名称" ng-model="newProduct.name"><br>
+    单价:<input class="form-control" placeholder="请输入单价" ng-model="newProduct.price"><br>
+    单位:<input class="form-control" placeholder="请输入单位" ng-model="newProduct.unit">
     <input type="submit" class="btn btn-success btn-sm" value="添加"
            ng-click="finishAddProduct(newProduct)">
     <input type="submit" class="btn btn-info btn-sm" value="取消" ng-click="cancelAddProduct()">
