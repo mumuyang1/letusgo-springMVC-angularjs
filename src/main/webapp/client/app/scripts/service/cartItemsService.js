@@ -12,8 +12,8 @@ angular.module('letusgoApp')
         });
     };
 
-    this.getCartItem = function (id,callback) {
-      $http.get('/api/cartitems'+id)
+    this.getCartItem = function (id, callback) {
+      $http.get('/api/cartitems' + id)
         .success(function (data) {
 
           callback(data);
@@ -37,6 +37,11 @@ angular.module('letusgoApp')
 
     this.deleteCartItem = function (id) {
       $http.delete('/api/cartitems/' + id);
+    };
+
+    this.deleteCartItems = function () {
+
+      $http.delete('/api/cartitems/');
     };
 
     this.changeCount = function (cartItem) {
